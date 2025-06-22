@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Dsw2025Tpi.Application.Services
 {
-   public class ProductsManagEmentService
-    {
-        public class ProductsManagementService
+  
+    public class ProductsManagementService
         {
             private readonly IRepository _repository;
 
@@ -119,4 +118,3 @@ namespace Dsw2025Tpi.Application.Services
             }
         }
     }
-}

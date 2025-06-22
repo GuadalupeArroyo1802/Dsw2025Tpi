@@ -9,15 +9,6 @@ namespace Dsw2025Tpi.Domain.Entities
     public class Product : EntityBase
     {
 
-        public string Sku { get; set; }
-        public string Name { get; set; }
-        public string? InternalCode { get; set; }
-        public string? Description { get; set; }
-        public decimal CurrentUnitPrice { get;  set; }
-        public int? StockQuantity { get;  set; }
-        public bool IsActive { get; set; }
-
-
         public Product()
         {
 
@@ -30,9 +21,18 @@ namespace Dsw2025Tpi.Domain.Entities
             Description = descripcion;
             CurrentUnitPrice = price;
             StockQuantity = stock;
-            Id = Guid.NewGuid();
             IsActive = true;
         }
+        public string Sku { get; set; }
+        public string Name { get; set; }
+        public string? InternalCode { get; set; }
+        public string? Description { get; set; }
+        public decimal CurrentUnitPrice { get;  set; }
+        public int? StockQuantity { get;  set; }
+        public bool IsActive { get; set; }
+
+
+        
         
    
 
