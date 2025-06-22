@@ -1,4 +1,4 @@
-﻿namespace Dsw2025Tpi.Domain.Entities;
+namespace Dsw2025Tpi.Domain.Entities;
 
 public abstract class EntityBase
 {
@@ -6,5 +6,5 @@ public abstract class EntityBase
     {
         Id = Guid.NewGuid();
     }
-    public Guid Id { get; set; }
+    public Guid Id { get; }
 }

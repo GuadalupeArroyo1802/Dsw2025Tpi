@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Dsw2025Tpi.Domain.Entities
         {
             ShippingAddress = shippingAddress;
             BillingAddress = billingAddress;
-            IdCustomer= Guid.NewGuid();
+            IdCustomer = Guid.NewGuid();
         }
         public Guid CustomerId { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

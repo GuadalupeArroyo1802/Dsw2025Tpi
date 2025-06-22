@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +20,6 @@ namespace Dsw2025Tpi.Domain.Entities
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
         public decimal SubTotal => UnitPrice * Quantity;
-        /*
-        public Guid IdOrderItem { get; set; }
-        public Guid IdProduct { get; set; }
-        public int Quantity { get; set; }
-        public decimal UnitPrice { get; set; } // precio en el momento de la compra
-        public decimal Subtotal => Quantity * UnitPrice;
-        public Order? Order { get; set; }
-        */
+        
     }
 }
