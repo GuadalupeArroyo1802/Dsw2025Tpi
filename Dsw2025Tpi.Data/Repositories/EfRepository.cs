@@ -1,6 +1,8 @@
 ﻿using Dsw2025Tpi.Domain.Entities;
 using Dsw2025Tpi.Domain.Interfaces;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using Dsw2025Tpi.Data.Sources;
 
 namespace Dsw2025Tpi.Data.Repositories;
 
@@ -12,6 +14,7 @@ public class EfRepository: IRepository
     {
         _context = context;
     }
+
 
     public async Task<T> Add<T>(T entity) where T : EntityBase
     {
