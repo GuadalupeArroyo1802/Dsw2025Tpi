@@ -1,3 +1,9 @@
+using Dsw2025Tpi.Data;
+using Dsw2025Tpi.Data.Repositories;
+using Dsw2025Tpi.Domain;
+using Dsw2025Tpi.Domain.Entities;
+using Dsw2025Tpi.Domain.Interfaces;
+
 
 namespace Dsw2025Tpi.Api;
 
@@ -14,6 +20,10 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddHealthChecks();
+        builder.Services.AddDbContext<Dsw2025TpiContext>(options =>
+           
+        builder.Services.AddScoped<IRepository, EfRepository>();
+
 
         var app = builder.Build();
 
