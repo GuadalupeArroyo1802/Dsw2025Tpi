@@ -1,0 +1,22 @@
+[
+  {
+    "Id": "7a1ac5ab-6c49-4e77-a0f1-b8b6456b7b29",
+    "Sku": "PRD001",
+    "InternalCode": "INT-001",
+    "Name": "Producto A",
+    "Description": "Producto A de ejemplo",
+    "CurrentUnitPrice": 120.5,
+    "StockQuantity": 100,
+    "IsActive": true
+  },
+  {
+    "Id": "6a82cde9-efa1-403c-ba20-19cf04070400",
+    "Sku": "PRD002",
+    "InternalCode": "INT-002",
+    "Name": "Producto B",
+    "Description": "Producto B de ejemplo",
+    "CurrentUnitPrice": 75.0,
+    "StockQuantity": 200,
+    "IsActive": true
+  }
+]

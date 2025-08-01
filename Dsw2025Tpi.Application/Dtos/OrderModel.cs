@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dsw2025Tpi.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,21 @@ namespace Dsw2025Tpi.Application.Dtos
 {
     public record OrderModel
     {
-        public record Request(
+        //Requests
+        public record OrderRequest(Guid CustomerId, string ShippingAddress, string BillingAddress, List<OrderItemModel> OrderItems);
+        public record OrderItemModel(Guid ProductId, int Quantity, string Name, string Description, decimal CurrentUnitPrice);
+
+        //Responses
+        public record OrderResponse(Guid Id,
             Guid CustomerId,
             string ShippingAddress,
             string BillingAddress,
-            List<OrderItemModel.Request> OrderItems
-        );
-
-        public record Response(
-            Guid Id,
-            string ShippingAddress,
-            string BillingAddress,
-            string Status,
+            DateTime Date,
             decimal TotalAmount,
-            List<OrderItemModel.Response> OrderItems
-        );
+            List<OrderItemResponse> OrderItems,
+            string Status);
+        public record OrderItemResponse(Guid ProductId, string Name, string Description, decimal UnitPriceint, int Quantity, decimal Subtotal);
+
+
     }
 }

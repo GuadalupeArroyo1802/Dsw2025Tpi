@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Dsw2025Tpi.Domain.Entities;
+﻿using Dsw2025Tpi.Domain.Entities;
 using Dsw2025Tpi.Domain.Interfaces;
+using System.Linq.Expressions;
+using System.Text.Json;
 
 namespace Dsw2025Tpi.Data.Repositories
 {
