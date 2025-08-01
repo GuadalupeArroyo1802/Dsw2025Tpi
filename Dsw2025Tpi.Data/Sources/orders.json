@@ -1,0 +1,24 @@
+[
+  {
+    "Id": "803a8037-7f08-451d-95b2-bb4e8a1a15c1",
+    "CustomerId": "7950464a-106e-4c7c-947d-403a0b4b28e6",
+    "ShippingAddress": "Calle Siempre Viva 123",
+    "BillingAddress": "Calle Siempre Viva 123",
+    "OrderItems": [
+      {
+        "ProductId": "7a1ac5ab-6c49-4e77-a0f1-b8b6456b7b29",
+        "Quantity": 2,
+        "Name": "Producto A",
+        "Description": "Producto A de ejemplo",
+        "UnitPrice": 120.5
+      },
+      {
+        "ProductId": "6a82cde9-efa1-403c-ba20-19cf04070400",
+        "Quantity": 1,
+        "Name": "Producto B",
+        "Description": "Producto B de ejemplo",
+        "UnitPrice": 75.0
+      }
+    ]
+  }
+]

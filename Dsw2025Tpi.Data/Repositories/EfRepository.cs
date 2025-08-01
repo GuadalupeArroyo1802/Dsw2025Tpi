@@ -2,11 +2,10 @@
 using Dsw2025Tpi.Domain.Interfaces;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Dsw2025Tpi.Data.Sources;
 
 namespace Dsw2025Tpi.Data.Repositories;
 
-public class EfRepository: IRepository
+public class EfRepository : IRepository
 {
     private readonly Dsw2025TpiContext _context;
 
@@ -14,7 +13,6 @@ public class EfRepository: IRepository
     {
         _context = context;
     }
-
 
     public async Task<T> Add<T>(T entity) where T : EntityBase
     {
@@ -56,6 +54,8 @@ public class EfRepository: IRepository
         await _context.SaveChangesAsync();
         return entity;
     }
+
+
 
     private static IQueryable<T> Include<T>(IQueryable<T> query, string[] includes) where T : EntityBase
     {
