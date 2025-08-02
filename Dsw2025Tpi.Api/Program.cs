@@ -8,6 +8,14 @@ using Microsoft.EntityFrameworkCore.Design;
 namespace Dsw2025Tpi.Api;
 using Dsw2025Tpi.Data.helpers;
 
+using System.Text;
+using Dsw2025Tpi.Application.Services;
+using Dsw2025Tpi.Data.helpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+
 public class Program
 {
     public static void Main(string[] args)
@@ -16,13 +24,46 @@ public class Program
 
         // Add services to the container.
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+            options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+        });
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddScoped<IProductsManagementService, ProductsManagementService>();
         builder.Services.AddScoped<IOrderManagement, OrderManagement>();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddTransient<IRepository, EfRepository>();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(o =>
+        {
+            o.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "Desarrollo De Software",
+                Version = "v1", 
+            });
+            o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Name = "Authorization",
+                Description = "Ingresar el token",
+                Type = SecuritySchemeType.ApiKey,
+            });
+            o.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
+        });
         builder.Services.AddDbContext<Dsw2025TpiContext>(options =>
         {
 
@@ -32,11 +73,61 @@ public class Program
         });
         builder.Services.AddHealthChecks();
 
+        builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+        {
+            options.Password = new PasswordOptions
+            {
+                RequiredLength = 8
+
+            };
+        })
+        .AddEntityFrameworkStores<AuthenticateContext>()
+        .AddDefaultTokenProviders();
+
+
+        var jwtConfig = builder.Configuration.GetSection("Jwt"); 
+        var keyText = jwtConfig["Key"] ?? throw new ArgumentNullException("Jwt Key");
+        var key = Encoding.UTF8.GetBytes(keyText);
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+           .AddJwtBearer(options =>
+           {
+               options.TokenValidationParameters = new TokenValidationParameters
+               {
+                   ValidateIssuer = true,
+                   ValidateAudience = true,
+                   ValidateLifetime = true,
+                   ValidateIssuerSigningKey = true,
+                   ValidIssuer = jwtConfig["Issuer"],
+                   ValidAudience = jwtConfig["Audience"],
+                   IssuerSigningKey = new SymmetricSecurityKey(key)
+
+               };
+           });
+        builder.Services.AddSingleton<JwtTokenService>();
+
+        builder.Services.AddDbContext<AuthenticateContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Dsw2025TpiEntities"));
+        });
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("PermitirFrontend", policy =>
+                policy.WithOrigins("http://localhost:3000")
+                      .AllowAnyHeader()
+                      .AllowAnyMethod());
+        });
+
         var app = builder.Build();
         using (var scope = app.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<Dsw2025TpiContext>();
-            db.Seedwork<Customer>("sources\\Customers.json");
+            db.Seedwork<Customer>(Path.Combine(AppContext.BaseDirectory, "Sources", "customers.json"));
+
         }
 
 
@@ -48,6 +139,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseAuthentication();
 
         app.UseAuthorization();
 

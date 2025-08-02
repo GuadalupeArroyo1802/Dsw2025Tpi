@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositories\Sources\**" />
+    <EmbeddedResource Remove="Repositories\Sources\**" />
+    <None Remove="Repositories\Sources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+
     <None Remove="Sources\customers.json" />
     <None Remove="Sources\orders.json" />
     <None Remove="Sources\products.json" />
@@ -14,7 +21,8 @@
 
   <ItemGroup>
     <Content Include="Sources\customers.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+
     </Content>
     <Content Include="Sources\orders.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -25,15 +33,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.7" />
+
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.7" />
+
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Dsw2025Tpi.Domain\Dsw2025Tpi.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

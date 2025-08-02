@@ -2,6 +2,11 @@
 using Dsw2025Tpi.Application.Exceptions;
 using Dsw2025Tpi.Domain.Entities;
 using Dsw2025Tpi.Domain.Interfaces;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using static Azure.Core.HttpHeader;
 using static Dsw2025Tpi.Application.Dtos.OrderModel;
@@ -79,10 +84,11 @@ namespace Dsw2025Tpi.Application.Services
             var added = await _repository.Add(order);
 
             return new OrderModel.OrderResponse(
-                added.Id,
-                added.CustomerId,
+                added.Id,                
                 added.ShippingAddress,
                 added.BillingAddress,
+                added.CustomerId,
+
                 added.CreatedAt,
                 added.TotalAmount,
                 added.OrderItems.Select(oi => new OrderModel.OrderItemResponse(
@@ -93,6 +99,102 @@ namespace Dsw2025Tpi.Application.Services
                     oi.Quantity,
                     oi.Subtotal)).ToList(),
                 added.Status.ToString());
+        }
+        //Obtener todas las ordenes end point 7
+        public async Task<IEnumerable<OrderResponse>> GetOrders(string? status, Guid? customerId, int pageNumber = 1, int pageSize = 10)
+        {
+            var allOrders = await _repository.GetAll<Order>(nameof(Order.OrderItems), $"{nameof(Order.OrderItems)}.{nameof(OrderItem.Product)}");
+            if (allOrders == null) return Enumerable.Empty<OrderResponse>();
+
+            var query = allOrders.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(status))
+                query = query.Where(o => o.Status.ToString().Equals(status, StringComparison.OrdinalIgnoreCase));
+
+            if (customerId.HasValue)
+                query = query.Where(o => o.CustomerId == customerId.Value);
+
+            var pagedOrders = query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return pagedOrders.Select(o => new OrderResponse(
+                o.Id,
+                o.ShippingAddress,
+                o.BillingAddress,
+                o.CustomerId,
+                o.CreatedAt,
+                o.TotalAmount,
+                o.OrderItems.Select(i => new OrderItemResponse(
+                    i.ProductId,
+                    i.Product?.Name ?? "",
+                    i.Product?.Description ?? "",
+                    i.UnitPrice,
+                    i.Quantity,
+                    i.Subtotal
+                )).ToList(),
+                o.Status.ToString()
+            ));
+        }
+        //Obtener una orden por ID
+        public async Task<OrderResponse?> GetOrderById(Guid id)
+        {
+            var order = await _repository.GetById<Order>(id, nameof(Order.OrderItems), $"{nameof(Order.OrderItems)}.{nameof(OrderItem.Product)}");
+            if (order == null) return null;
+
+            return new OrderResponse(
+                order.Id,
+                order.ShippingAddress,
+                order.BillingAddress,
+                order.CustomerId,
+                order.CreatedAt,
+                order.TotalAmount,
+                order.OrderItems.Select(i => new OrderItemResponse(
+                    i.ProductId,
+                    i.Product?.Name ?? "",
+                    i.Product?.Description ?? "",
+                    i.UnitPrice,
+                    i.Quantity,
+                    i.Subtotal
+                )).ToList(),
+                order.Status.ToString()
+            );
+        }
+        // Actualizar el estado de una orden
+        public async Task<OrderModel.OrderResponse?> UpdateOrderStatus(Guid orderId, string newStatus)
+        {
+            var order = await _repository.GetById<Order>(orderId, nameof(Order.OrderItems), $"{nameof(Order.OrderItems)}.{nameof(OrderItem.Product)}");
+            if (order == null)
+                return null;
+
+            if (!Enum.TryParse<OrderStatus>(newStatus, ignoreCase: true, out var parsedStatus))
+                throw new ArgumentException("Estado inválido.");
+
+            // Regla opcional: no permitir cambiar de Delivered o Cancelled a otros
+            if (order.Status == OrderStatus.Delivered || order.Status == OrderStatus.Cancelled)
+                throw new ArgumentException("No se puede modificar una orden entregada o cancelada.");
+
+            order.ChangeStatus(parsedStatus);
+            await _repository.Update(order);
+
+            return new OrderModel.OrderResponse(
+                order.Id,
+                order.ShippingAddress,
+                order.BillingAddress,
+                order.CustomerId,
+                order.CreatedAt,
+                order.TotalAmount,
+                order.OrderItems.Select(i => new OrderModel.OrderItemResponse(
+                    i.ProductId,
+                    i.Product?.Name ?? "",
+                    i.Product?.Description ?? "",
+                    i.UnitPrice,
+                    i.Quantity,
+                    i.Subtotal
+                )).ToList(),
+                order.Status.ToString()
+            );
         }
     }
 }

@@ -10,20 +10,47 @@ namespace Dsw2025Tpi.Application.Dtos
     public record OrderModel
     {
         //Requests
-        public record OrderRequest(Guid CustomerId, string ShippingAddress, string BillingAddress, List<OrderItemModel> OrderItems);
-        public record OrderItemModel(Guid ProductId, int Quantity, string Name, string Description, decimal CurrentUnitPrice);
+        public record OrderRequest(
+            string ShippingAddress, 
+            string BillingAddress, 
+            Guid CustomerId, 
+            List<OrderItemModel> OrderItems
+            );
+        public record OrderItemModel(
+            Guid ProductId, 
+            int Quantity, 
+            string Name, 
+            string Description, 
+            decimal CurrentUnitPrice
+            );
 
         //Responses
-        public record OrderResponse(Guid Id,
+        public record OrderResponse(
+            Guid Id,
+            string? ShippingAddress,
+            string? BillingAddress,
             Guid CustomerId,
-            string ShippingAddress,
-            string BillingAddress,
             DateTime Date,
             decimal TotalAmount,
             List<OrderItemResponse> OrderItems,
-            string Status);
-        public record OrderItemResponse(Guid ProductId, string Name, string Description, decimal UnitPriceint, int Quantity, decimal Subtotal);
-
-
+            string Status
+            );
+        public record OrderItemResponse(
+            Guid ProductId, 
+            string Name, 
+            string Description, 
+            decimal UnitPriceint, 
+            int Quantity, 
+            decimal Subtotal
+            );
+        public record OrderQueryParameters(
+          string? Status,
+          Guid? CustomerId,
+          int PageNumber = 1,
+          int PageSize = 10
+          );
+        public record UpdateOrderStatusRequest(
+            string NewStatus
+            );
     }
 }

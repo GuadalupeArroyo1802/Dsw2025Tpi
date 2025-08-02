@@ -44,14 +44,17 @@ namespace Dsw2025Tpi.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public decimal TotalAmount => OrderItems.Sum(item => item.Subtotal);
 
-        //Forean Key Customer
+        //Foreign Key Customer
         public Guid CustomerId { get; set; }
         public Customer? Customer { get; set; }
 
         //Order Items
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
-
-
+        //Cambio de estado de la orden
+        public void ChangeStatus(OrderStatus newStatus)
+        {
+            Status = newStatus;
+        }
     }
 }
