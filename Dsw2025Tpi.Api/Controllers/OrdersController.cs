@@ -12,6 +12,7 @@ namespace Dsw2025Tpi.Api.Controllers
 {
     [ApiController]
     [Authorize]
+
     [Route("api/orders")]
     public class OrdersController : ControllerBase
     {
@@ -47,7 +48,6 @@ namespace Dsw2025Tpi.Api.Controllers
                 return Problem(e.Message);
             }
         }
-
         // Obtener todas las ordenenes
         [HttpGet]
         public async Task<IActionResult> GetOrders(

@@ -1,4 +1,3 @@
-
 using Dsw2025Tpi.Application.Services;
 using Dsw2025Tpi.Data;
 using Dsw2025Tpi.Data.Repositories;
@@ -7,6 +6,7 @@ using Dsw2025Tpi.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 namespace Dsw2025Tpi.Api;
+using Dsw2025Tpi.Data.helpers;
 
 using System.Text;
 using Dsw2025Tpi.Application.Services;
@@ -127,6 +127,7 @@ public class Program
         {
             var db = scope.ServiceProvider.GetRequiredService<Dsw2025TpiContext>();
             db.Seedwork<Customer>(Path.Combine(AppContext.BaseDirectory, "Sources", "customers.json"));
+
         }
 
 
@@ -146,6 +147,8 @@ public class Program
         app.MapControllers();
 
         app.MapHealthChecks("/healthcheck");
+
+
 
         app.Run();
     }

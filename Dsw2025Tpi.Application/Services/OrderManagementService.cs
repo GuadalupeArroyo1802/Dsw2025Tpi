@@ -88,6 +88,7 @@ namespace Dsw2025Tpi.Application.Services
                 added.ShippingAddress,
                 added.BillingAddress,
                 added.CustomerId,
+
                 added.CreatedAt,
                 added.TotalAmount,
                 added.OrderItems.Select(oi => new OrderModel.OrderItemResponse(
@@ -195,6 +196,5 @@ namespace Dsw2025Tpi.Application.Services
                 order.Status.ToString()
             );
         }
-
     }
 }
