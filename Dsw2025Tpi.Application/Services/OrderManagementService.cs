@@ -47,18 +47,10 @@ namespace Dsw2025Tpi.Application.Services
                 var product = await _repository.GetById<Product>(item.ProductId);
                 if (product.IsActive == false)
                     throw new ArgumentException("producto no dispnible, campo IsActive false");
-                if (item.CurrentUnitPrice != product.CurrentUnitPrice)
-                    throw new ArgumentException("Precio de producto no coincidente");
                 if (product == null)
                     throw new EntityNotFoundException($"Producto con ID {item.ProductId} no encontrado.");
-                if (item.Description != product.Description || item.Name != product.Name)
-                    throw new ArgumentException("Datos de descripcion o nombre no coincidentes");
-                if (product.StockCuantity < item.Quantity)
+                if (product.StockQuantity < item.Quantity)
                     throw new ArgumentException($"No hay suficiente stock para el producto {product.Name}.");
-                if (item.Quantity <= 0)
-                    throw new ArgumentException($"La cantidad del producto {item.Name} debe ser mayor a 0.");
-                if (item.CurrentUnitPrice <= 0)
-                    throw new ArgumentException($"El precio del producto {item.Name} debe ser mayor a 0.");
                 else
                 {
                     product.RestarStock(item.Quantity); // Restar la cantidad del producto del stock
@@ -74,7 +66,7 @@ namespace Dsw2025Tpi.Application.Services
             foreach (var item in request.OrderItems)
             {
                 var product = await _repository.GetById<Product>(item.ProductId);
-                var orderItem = new OrderItem(product.Id, product, item.Quantity, item.CurrentUnitPrice);
+                var orderItem = new OrderItem(product.Id, product, item.Quantity, product.CurrentUnitPrice);
                 orderItems.Add(orderItem);
             }
             // Crear la orden

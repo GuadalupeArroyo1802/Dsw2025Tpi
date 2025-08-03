@@ -144,7 +144,7 @@ namespace Dsw2025Tpi.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("StockCuantity")
+                    b.Property<int>("StockQuantity")
                         .HasMaxLength(10)
                         .HasColumnType("int");
 

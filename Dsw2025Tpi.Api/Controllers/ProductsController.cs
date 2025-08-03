@@ -51,7 +51,7 @@ namespace Dsw2025Tpi.Api.Controllers
             }
         }
 
-        // Obtener todos los productos #check
+        // Obtener todos los productos 
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -72,7 +72,7 @@ namespace Dsw2025Tpi.Api.Controllers
 
         }
 
-        // Obtener un producto por ID #chek
+        // Obtener un producto por ID 
         [Authorize]
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetById(Guid id)
@@ -94,7 +94,7 @@ namespace Dsw2025Tpi.Api.Controllers
 
         }
 
-        //deshabilitar un producto #check
+        //deshabilitar un producto 
         [Authorize(Roles = "admin")]
         [HttpPatch("{id:Guid}")]
         public async Task<IActionResult> Disable(Guid id)
@@ -114,7 +114,7 @@ namespace Dsw2025Tpi.Api.Controllers
             return NoContent(); // 204
         }
 
-        // Actualizar un producto por ID #check
+        // Actualizar un producto por ID 
         [Authorize(Roles = "admin")]
         [HttpPut("{id:Guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] ProductModel.ProductRequest request)
@@ -135,9 +135,6 @@ namespace Dsw2025Tpi.Api.Controllers
             catch (Exception e)
             {
                 return Problem("Se produjo un error al actualizar el producto, {0}", e.Message);
-            }
-            {
-
             }
         }
     }

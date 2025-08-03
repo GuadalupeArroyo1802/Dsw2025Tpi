@@ -18,10 +18,7 @@ namespace Dsw2025Tpi.Application.Dtos
             );
         public record OrderItemModel(
             Guid ProductId, 
-            int Quantity, 
-            string Name, 
-            string Description, 
-            decimal CurrentUnitPrice
+            int Quantity
             );
 
         //Responses

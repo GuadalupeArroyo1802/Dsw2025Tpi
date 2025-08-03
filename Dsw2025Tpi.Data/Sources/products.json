@@ -1,22 +1,152 @@
 [
   {
     "Id": "7a1ac5ab-6c49-4e77-a0f1-b8b6456b7b29",
-    "Sku": "PRD001",
+    "Sku": "SKU-1001",
     "InternalCode": "INT-001",
-    "Name": "Producto A",
-    "Description": "Producto A de ejemplo",
+    "Name": "Auriculares JBL",
+    "Description": "Auriculares JBL con suspensiones",
     "CurrentUnitPrice": 120.5,
     "StockQuantity": 100,
     "IsActive": true
   },
   {
     "Id": "6a82cde9-efa1-403c-ba20-19cf04070400",
-    "Sku": "PRD002",
+    "Sku": "SKU-1002",
     "InternalCode": "INT-002",
-    "Name": "Producto B",
-    "Description": "Producto B de ejemplo",
+    "Name": "Tablet Samsung",
+    "Description": "Tablet Samsung 13''",
     "CurrentUnitPrice": 75.0,
     "StockQuantity": 200,
+    "IsActive": true
+  },
+  {
+    "Id": "d619acec-e7af-4452-82fe-256bc0c26705",
+    "Sku": "SKU-1003",
+    "InternalCode": "INT-003",
+    "Name": "Celular Samsung S20 FE",
+    "Description": "Celular Samsung S20 FE, resistente al agua",
+    "CurrentUnitPrice": 81.5,
+    "StockQuantity": 30,
+    "IsActive": true
+  },
+  {
+    "Id": "bef0c25b-e0d5-461b-b996-292289d14ea3",
+    "Sku": "SKU-1004",
+    "InternalCode": "INT-004",
+    "Name": "Freidora Oster",
+    "Description": "Freidora Oster, con pantalla tactil",
+    "CurrentUnitPrice": 92.0,
+    "StockQuantity": 40,
+    "IsActive": true
+  },
+  {
+    "Id": "3572da38-61df-43fb-a72b-b296b892fca6",
+    "Sku": "SKU-1005",
+    "InternalCode": "INT-005",
+    "Name": "Netbook Samsung",
+    "Description": "Netbook Samsung con Procesador I3 ",
+    "CurrentUnitPrice": 102.5,
+    "StockQuantity": 50,
+    "IsActive": true
+  },
+  {
+    "Id": "bac9597a-7e98-4155-8304-452de89b242f",
+    "Sku": "SKU-1006",
+    "InternalCode": "INT-006",
+    "Name": "Estufa",
+    "Description": "Estufa Liliana",
+    "CurrentUnitPrice": 113.0,
+    "StockQuantity": 60,
+    "IsActive": true
+  },
+  {
+    "Id": "a86417b7-4b99-490c-9b6a-da6743780c29",
+    "Sku": "SKU-1007",
+    "InternalCode": "INT-007",
+    "Name": "Licuadora",
+    "Description": "Licuadora Lilian con 3 velocidades",
+    "CurrentUnitPrice": 123.5,
+    "StockQuantity": 70,
+    "IsActive": true
+  },
+  {
+    "Id": "0fead5f5-7066-4c8b-8d28-6f7fef561f3f",
+    "Sku": "SKU-1008",
+    "InternalCode": "INT-008",
+    "Name": "Smart Tv",
+    "Description": "Smart Tv LG de 32 pulgadas",
+    "CurrentUnitPrice": 134.0,
+    "StockQuantity": 80,
+    "IsActive": true
+  },
+  {
+    "Id": "2af01f44-dc55-44ac-af45-98b41f1e42cd",
+    "Sku": "SKU-1009",
+    "InternalCode": "INT-009",
+    "Name": "Teclado Gamer",
+    "Description": "Teclado Gamer con luces",
+    "CurrentUnitPrice": 144.5,
+    "StockQuantity": 90,
+    "IsActive": true
+  },
+  {
+    "Id": "237ed32b-9d9a-4853-95c3-8b1b31c6a17e",
+    "Sku": "SKU-1010",
+    "InternalCode": "INT-010",
+    "Name": "Parlante Motorola",
+    "Description": "Parlante Motorla Inalambrico",
+    "CurrentUnitPrice": 155.0,
+    "StockQuantity": 100,
+    "IsActive": true
+  },
+  {
+    "Id": "54498458-968b-427c-9234-b666237d70d5",
+    "Sku": "SKU-1011",
+    "InternalCode": "INT-011",
+    "Name": "Heladera Kohinnor",
+    "Description": "Heladera Kohinnor con refrigerador incluido",
+    "CurrentUnitPrice": 165.5,
+    "StockQuantity": 110,
+    "IsActive": true
+  },
+  {
+    "Id": "4950a4a5-0311-4fff-a4d8-b9a7767950a6",
+    "Sku": "SKU-1012",
+    "InternalCode": "INT-012",
+    "Name": "Microondas BGH",
+    "Description": "Microondas BGH Negro",
+    "CurrentUnitPrice": 176.0,
+    "StockQuantity": 120,
+    "IsActive": true
+  },
+  {
+    "Id": "058f5e56-f012-4880-a7f8-2efd436ace33",
+    "Sku": "SKU-1013",
+    "InternalCode": "INT-013",
+    "Name": "Palo Hockey",
+    "Description": "Palo de Hockey Balck con 95% de Carbono",
+    "CurrentUnitPrice": 186.5,
+    "StockQuantity": 130,
+    "IsActive": true
+  },
+  {
+    "Id": "5e7d955b-d820-4cc9-9461-fc35cb24c4aa",
+    "Sku": "SKU-1014",
+    "InternalCode": "INT-014",
+    "Name": "Bolso Black ",
+    "Description": "Bolso Black con portapalos incluido",
+    "CurrentUnitPrice": 197.0,
+    "StockQuantity": 140,
+    "IsActive": true
+  },
+  {
+    "Id": "1b8e3ac1-c1fc-44a5-a8dd-b99aa221eae9",
+    "Sku": "SKU-1015",
+    "InternalCode": "INT-015",
+    "Name": "Tartaneras Adidas Fabella",
+    "Description": "Zapatillas Fabella especiales para Hockey",
+    "CurrentUnitPrice": 207.5,
+    "StockQuantity": 150,
     "IsActive": true
   }
 ]
