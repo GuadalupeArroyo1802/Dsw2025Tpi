@@ -1,23 +1,49 @@
 [
   {
-    "Id": "803a8037-7f08-451d-95b2-bb4e8a1a15c1",
-    "CustomerId": "7950464a-106e-4c7c-947d-403a0b4b28e6",
-    "ShippingAddress": "Calle Siempre Viva 123",
-    "BillingAddress": "Calle Siempre Viva 123",
-    "OrderItems": [
+    "shippingAddress": "100 Main St, Springfield",
+    "billingAddress": "100 Main St, Springfield",
+    "customerId": "b63d33e2-cae4-422a-9c81-c78cbf4ca84b",
+    "notes": "",
+    "orderItems": [
       {
-        "ProductId": "7a1ac5ab-6c49-4e77-a0f1-b8b6456b7b29",
-        "Quantity": 2,
-        "Name": "Producto A",
-        "Description": "Producto A de ejemplo",
-        "UnitPrice": 120.5
+        "productId": "3572da38-61df-43fb-a72b-b296b892fca6",
+        "quantity": 3
       },
       {
-        "ProductId": "6a82cde9-efa1-403c-ba20-19cf04070400",
-        "Quantity": 1,
-        "Name": "Producto B",
-        "Description": "Producto B de ejemplo",
-        "UnitPrice": 75.0
+        "productId": "058f5e56-f012-4880-a7f8-2efd436ace33",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "shippingAddress": "101 Main St, Springfield",
+    "billingAddress": "101 Main St, Springfield",
+    "customerId": "b63d33e2-cae4-422a-9c81-c78cbf4ca84b",
+    "notes": "",
+    "orderItems": [
+      {
+        "productId": "4950a4a5-0311-4fff-a4d8-b9a7767950a6",
+        "quantity": 3
+      },
+      {
+        "productId": "5e7d955b-d820-4cc9-9461-fc35cb24c4aa",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "shippingAddress": "102 Main St, Springfield",
+    "billingAddress": "102 Main St, Springfield",
+    "customerId": "b63d33e2-cae4-422a-9c81-c78cbf4ca84b",
+    "notes": "",
+    "orderItems": [
+      {
+        "productId": "4950a4a5-0311-4fff-a4d8-b9a7767950a6",
+        "quantity": 1
+      },
+      {
+        "productId": "2af01f44-dc55-44ac-af45-98b41f1e42cd",
+        "quantity": 2
       }
     ]
   }

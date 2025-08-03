@@ -32,7 +32,7 @@ public class Dsw2025TpiContext : DbContext
         dbProduct.Property(p => p.CurrentUnitPrice)
             .HasPrecision(15, 2)
             .IsRequired();
-        dbProduct.Property(p => p.StockCuantity)
+        dbProduct.Property(p => p.StockQuantity)
             .HasMaxLength(10);
 
         var dbCustomer = modelBuilder.Entity<Customer>().ToTable("Customers");

@@ -20,13 +20,13 @@ public class Product : EntityBase
         Name = name;
         Description = descripcion;
         CurrentUnitPrice = price;
-        StockCuantity = stock;
+        StockQuantity = stock;
         Id = Guid.NewGuid();
         IsActive = true;
     }
 
     public string? InternalCode { get; set; }
-    public int StockCuantity { get; set; }
+    public int StockQuantity { get; set; }
     public string? Description { get; set; }
     public string? Sku { get; set; }
     public string? Name { get; set; }
@@ -37,7 +37,7 @@ public class Product : EntityBase
 
     public int RestarStock(int cantidad)
     {
-        StockCuantity -= cantidad;
-        return StockCuantity;
+        StockQuantity -= cantidad;
+        return StockQuantity;
     }
 }

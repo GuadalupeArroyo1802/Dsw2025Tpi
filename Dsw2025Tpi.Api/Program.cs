@@ -15,10 +15,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Threading.Tasks;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -127,7 +128,19 @@ public class Program
         {
             var db = scope.ServiceProvider.GetRequiredService<Dsw2025TpiContext>();
             db.Seedwork<Customer>(Path.Combine(AppContext.BaseDirectory, "Sources", "customers.json"));
+            db.Seedwork<Product>(Path.Combine(AppContext.BaseDirectory, "Sources", "products.json"));
+            db.Seedwork<Product>(Path.Combine(AppContext.BaseDirectory, "Sources", "orders.json"));
 
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            string[] roles = new[] { "admin", "customer" };
+
+            foreach (var role in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
+                {
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
         }
 
 

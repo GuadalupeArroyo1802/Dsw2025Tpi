@@ -38,20 +38,40 @@ public class AuthenticateController : ControllerBase
             return Unauthorized("Usuario o contraseña incorrectos");
         }
 
-        var token = _jwtTokenService.GenerateToken(request.Username, "admin");
+        var roles = await _userManager.GetRolesAsync(user);
+        var role = roles.FirstOrDefault() ?? "customer"; // Default si no tiene ninguno
+
+        var token = _jwtTokenService.GenerateToken(request.Username, role);
         return Ok(new { token });
     }
 
-   [HttpPost("register")]
+    [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
- {
-     var user = new IdentityUser { UserName = model.Username, Email = model.Email };
-     var result = await _userManager.CreateAsync(user, model.Password);
- 
-     if (!result.Succeeded)
-         return BadRequest(result.Errors);
- 
-     // Opcional: enviar email de confirmación, etc.
-     return Ok("Usuario registrado correctamente.");
- }
+     {
+         try //validación de mail
+         {
+             var emailCheck = new System.Net.Mail.MailAddress(model.Email);
+         }
+         catch (FormatException)
+         {
+             return BadRequest("El correo electrónico tiene un formato inválido.");
+         }
+    
+         // Validación del rol 
+         var role = string.IsNullOrWhiteSpace(model.Role) ? "customer" : model.Role.ToLower();
+         if (role != "admin" && role != "customer")
+         {
+             return BadRequest("Rol inválido. Solo se permiten 'admin' o 'customer'.");
+         }
+    
+         var user = new IdentityUser { UserName = model.Username, Email = model.Email };
+         var result = await _userManager.CreateAsync(user, model.Password);
+    
+         if (!result.Succeeded)
+             return BadRequest(result.Errors);
+    
+         await _userManager.AddToRoleAsync(user, role);
+    
+         return Ok("Usuario registrado correctamente.");
+     }
 }

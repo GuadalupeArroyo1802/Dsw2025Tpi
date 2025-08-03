@@ -39,7 +39,7 @@ public class ProductsManagementService : IProductsManagementService
             product.CurrentUnitPrice,
             product.InternalCode,
             product.Description,
-            product.StockCuantity,
+            product.StockQuantity,
             product.IsActive
         );
 
@@ -62,7 +62,7 @@ public class ProductsManagementService : IProductsManagementService
         p.CurrentUnitPrice,
         p.InternalCode,
         p.Description,
-        p.StockCuantity,
+        p.StockQuantity,
         p.IsActive
     )).ToList();
 
@@ -88,7 +88,7 @@ public class ProductsManagementService : IProductsManagementService
         var product = new Product(request.Sku, request.InternalCode, request.Name, request.Description, request.CurrentUnitPrice, request.StockQuantity);
 
         await _repository.Add(product);
-        return new ProductModel.ProductResponse(product.Id, product.Sku, product.Name, product.CurrentUnitPrice, product.InternalCode, product.Description, product.StockCuantity);
+        return new ProductModel.ProductResponse(product.Id, product.Sku, product.Name, product.CurrentUnitPrice, product.InternalCode, product.Description, product.StockQuantity);
     }
 
     // Deshabilitar un producto por ID
@@ -124,7 +124,7 @@ public class ProductsManagementService : IProductsManagementService
         product.Name = request.Name;
         product.Description = request.Description;
         product.CurrentUnitPrice = request.CurrentUnitPrice;
-        product.StockCuantity = request.StockQuantity;
+        product.StockQuantity = request.StockQuantity;
 
         // Guarda los cambios
         await _repository.Update(product);
@@ -137,7 +137,7 @@ public class ProductsManagementService : IProductsManagementService
             product.CurrentUnitPrice,
             product.InternalCode,
             product.Description,
-            product.StockCuantity,
+            product.StockQuantity,
             product.IsActive
         );
     }

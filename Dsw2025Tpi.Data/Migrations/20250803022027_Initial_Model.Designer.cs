@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dsw2025Tpi.Data.Migrations
 {
     [DbContext(typeof(Dsw2025TpiContext))]
-    [Migration("20250801180352_Initial_Model")]
+    [Migration("20250803022027_Initial_Model")]
     partial class Initial_Model
     {
         /// <inheritdoc />
@@ -147,7 +147,7 @@ namespace Dsw2025Tpi.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("StockCuantity")
+                    b.Property<int>("StockQuantity")
                         .HasMaxLength(10)
                         .HasColumnType("int");
 

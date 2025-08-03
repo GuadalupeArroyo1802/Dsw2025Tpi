@@ -31,7 +31,7 @@ namespace Dsw2025Tpi.Data.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     InternalCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    StockCuantity = table.Column<int>(type: "int", maxLength: 10, nullable: false),
+                    StockQuantity = table.Column<int>(type: "int", maxLength: 10, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     Sku = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
