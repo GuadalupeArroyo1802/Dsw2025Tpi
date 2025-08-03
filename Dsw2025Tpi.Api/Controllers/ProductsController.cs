@@ -94,26 +94,6 @@ namespace Dsw2025Tpi.Api.Controllers
 
         }
 
-        //deshabilitar un producto 
-        [Authorize(Roles = "admin")]
-        [HttpPatch("{id:Guid}")]
-        public async Task<IActionResult> Disable(Guid id)
-        {
-            try
-            {
-                var success = await _productsManagmentService.DisableProductAsync(id);
-            }
-            catch (EntityNotFoundException enft)
-            {
-                return NotFound(enft.Message); // 404
-            }
-            catch (Exception e)
-            {
-                return Problem("Se produjo un error al deshabilitar el producto, {0}", e.Message);
-            }
-            return NoContent(); // 204
-        }
-
         // Actualizar un producto por ID 
         [Authorize(Roles = "admin")]
         [HttpPut("{id:Guid}")]
@@ -137,5 +117,27 @@ namespace Dsw2025Tpi.Api.Controllers
                 return Problem("Se produjo un error al actualizar el producto, {0}", e.Message);
             }
         }
+
+        //deshabilitar un producto 
+        [Authorize(Roles = "admin")]
+        [HttpPatch("{id:Guid}")]
+        public async Task<IActionResult> Disable(Guid id)
+        {
+            try
+            {
+                var success = await _productsManagmentService.DisableProductAsync(id);
+            }
+            catch (EntityNotFoundException enft)
+            {
+                return NotFound(enft.Message); // 404
+            }
+            catch (Exception e)
+            {
+                return Problem("Se produjo un error al deshabilitar el producto, {0}", e.Message);
+            }
+            return NoContent(); // 204
+        }
+
+       
     }
 }

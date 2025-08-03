@@ -58,9 +58,6 @@ public class Dsw2025TpiContext : DbContext
         dbOrder.Ignore(o => o.TotalAmount);
 
 
-
-
-
         var dbOrderItem = modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
         dbOrderItem.Property(oi => oi.UnitPrice)
     .HasPrecision(15, 2)
@@ -68,7 +65,6 @@ public class Dsw2025TpiContext : DbContext
         dbOrderItem.Property(oi => oi.Quantity)
             .IsRequired();
         dbOrderItem.Ignore(oi => oi.Subtotal);
-
 
 
     }
