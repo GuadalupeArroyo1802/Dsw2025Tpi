@@ -5,10 +5,10 @@
 Arroyo Guadalupe - 56813 | Ala Rué Nicolás - 56220 | Amado Maximiliano - 56666
 
 ## Requisitos previos para el uso
-.NET 7 SDK o superior
-SQL Server (LocalDB o instancia)
-Visual Studio 2022 con soporte para ASP .NET y EF Core
-(Opcional) Postman, si se desea probar los endpoints
+- .NET 7 SDK o superior
+- SQL Server (LocalDB o instancia)
+- Visual Studio 2022 con soporte para ASP .NET y EF Core
+- (Opcional) Postman, si se desea probar los endpoints
 
 ## Configuración Inicial
 - Clonar el repositorio: https://github.com/GuadalupeArroyo1802/Dsw2025Tpi.git
