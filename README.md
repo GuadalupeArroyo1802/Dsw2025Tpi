@@ -41,7 +41,7 @@ Crea un nuevo producto con los datos proporcionados, y lo almacena en la base de
 2) Obtener todos los productos
 GET /api/products
 Devuelve todos los productos registrados en la base de datos.
-✔ Caso de error: Devuelve la lista de productos y código 200.
+✔ Caso de éxito: Devuelve la lista de productos y código 200.
 ❌Caso de error: Devuelve 204 si no hay productos.
 
 3) Obtener un producto por ID
