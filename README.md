@@ -2,7 +2,7 @@
 ## Desarrollo de Software
 ### Backend
 #### Integrantes
-Arroyo Guadalipe - 56813 | Ala Rué Nicolás - 56220 | Amado Maximiliano - 56666
+Arroyo Guadalupe - 56813 | Ala Rué Nicolás - 56220 | Amado Maximiliano - 56666
 
 ## Requisitos previos para el uso
 .NET 7 SDK o superior
