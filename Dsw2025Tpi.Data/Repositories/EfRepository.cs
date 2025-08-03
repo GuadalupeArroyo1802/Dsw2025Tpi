@@ -55,8 +55,6 @@ public class EfRepository : IRepository
         return entity;
     }
 
-
-
     private static IQueryable<T> Include<T>(IQueryable<T> query, string[] includes) where T : EntityBase
     {
         var includedQuery = query;

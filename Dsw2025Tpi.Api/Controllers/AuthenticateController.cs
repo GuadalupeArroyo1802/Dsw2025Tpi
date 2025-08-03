@@ -47,31 +47,41 @@ public class AuthenticateController : ControllerBase
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
-     {
-         try //validación de mail
-         {
-             var emailCheck = new System.Net.Mail.MailAddress(model.Email);
-         }
-         catch (FormatException)
-         {
-             return BadRequest("El correo electrónico tiene un formato inválido.");
-         }
-    
-         // Validación del rol 
-         var role = string.IsNullOrWhiteSpace(model.Role) ? "customer" : model.Role.ToLower();
-         if (role != "admin" && role != "customer")
-         {
-             return BadRequest("Rol inválido. Solo se permiten 'admin' o 'customer'.");
-         }
-    
-         var user = new IdentityUser { UserName = model.Username, Email = model.Email };
-         var result = await _userManager.CreateAsync(user, model.Password);
-    
-         if (!result.Succeeded)
-             return BadRequest(result.Errors);
-    
-         await _userManager.AddToRoleAsync(user, role);
-    
-         return Ok("Usuario registrado correctamente.");
-     }
+    {
+        // Validación de formato de correo
+        try
+        {
+            var emailCheck = new System.Net.Mail.MailAddress(model.Email);
+        }
+        catch (FormatException)
+        {
+            return BadRequest("El correo electrónico tiene un formato inválido.");
+        }
+
+        // Validación de email existente
+        var existingUser = await _userManager.FindByEmailAsync(model.Email);
+        if (existingUser != null)
+        {
+            return BadRequest("El correo electrónico ya está registrado.");
+        }
+
+        // Validación del rol
+        var role = string.IsNullOrWhiteSpace(model.Role) ? "customer" : model.Role.ToLower();
+        if (role != "admin" && role != "customer")
+        {
+            return BadRequest("Rol inválido. Solo se permiten 'admin' o 'customer'.");
+        }
+
+        // Creación del usuario
+        var user = new IdentityUser { UserName = model.Username, Email = model.Email };
+        var result = await _userManager.CreateAsync(user, model.Password);
+
+        if (!result.Succeeded)
+            return BadRequest(result.Errors);
+
+        await _userManager.AddToRoleAsync(user, role);
+
+        return Ok("Usuario registrado correctamente.");
+    }
+
 }
