@@ -46,7 +46,6 @@ namespace Dsw2025Tpi.Domain.Entities
 
         //Foreign Key Customer
         public Guid CustomerId { get; set; }
-        public Customer? Customer { get; set; }
 
         //Order Items
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
