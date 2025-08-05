@@ -2,7 +2,6 @@ namespace Dsw2025Tpi.Domain.Entities
 {
     public class Order : EntityBase
     {
-
         public Order()
         {
 
@@ -28,9 +27,6 @@ namespace Dsw2025Tpi.Domain.Entities
             CreatedAt = createdAt;
             Status = status;
         }
-
-
-
         public OrderStatus Status { get; set; }
         public string? ShippingAddress { get; set; }
         public string? BillingAddress { get; set; }
@@ -38,10 +34,10 @@ namespace Dsw2025Tpi.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public decimal TotalAmount => OrderItems.Sum(item => item.Subtotal);
 
-        //Foreign Key Customer
+        //Foreign Key de Customer
         public Guid CustomerId { get; set; }
 
-        //Order Items
+        //Colección de Ítems de la Order
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
         //Cambio de estado de la orden

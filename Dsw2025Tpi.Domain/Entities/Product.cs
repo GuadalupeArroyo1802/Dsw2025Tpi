@@ -25,9 +25,8 @@ public class Product : EntityBase
     public string? Name { get; set; }
     public decimal CurrentUnitPrice { get; set; }
     public bool IsActive { get; set; }
-
+    //Define un atributo de tipo Colección, con todas las OrderItems
     public ICollection<OrderItem> OrderItems { get; set; }
-
     public int RestarStock(int cantidad)
     {
         StockQuantity -= cantidad;

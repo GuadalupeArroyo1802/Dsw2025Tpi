@@ -1,4 +1,3 @@
-using Dsw2025Tpi.Application.Services;
 using Dsw2025Tpi.Data;
 using Dsw2025Tpi.Data.Repositories;
 using Dsw2025Tpi.Domain.Entities;
@@ -44,9 +43,9 @@ public class Program
             o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme //definicion de esquema de seguridad
             {
                 In = ParameterLocation.Header, //define donde se espera el token
-                Name = "Authorization", //Define el nombre del header donde se envía el token.
+                Name = "Authorization", //Define el nombre del header donde se envï¿½a el token.
                 Description = "Ingresar el token", //especifica donde va el token
-                Type = SecuritySchemeType.ApiKey, //Indica que Swagger usará este esquema como si fuera una token Bearer.
+                Type = SecuritySchemeType.ApiKey, //Indica que Swagger usarï¿½ este esquema como si fuera una token Bearer.
             });
             o.AddSecurityRequirement(new OpenApiSecurityRequirement //indica que todos los endpoints requieren autenticacion
             {
@@ -74,7 +73,7 @@ public class Program
 
         builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => //configuracion de identidad
         {
-            options.Password = new PasswordOptions //reglas de la contraseña
+            options.Password = new PasswordOptions //reglas de la contraseï¿½a
             {
                 RequiredLength = 8
 
@@ -112,7 +111,7 @@ public class Program
 
         builder.Services.AddDbContext<AuthenticateContext>(options => //se configura el contexto de autenticacion
         {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("Dsw2025TpiEntities")); //es la base de datos de seguridad/autenticación de la aplicación.
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Dsw2025TpiEntities")); //es la base de datos de seguridad/autenticaciï¿½n de la aplicaciï¿½n.
 
             //obtiene la cadena de coneccion desde el archivo de configuracion, evitando harcodear las cadenas en el codigo fuente
         });
@@ -134,8 +133,8 @@ public class Program
             db.Seedwork<Product>(Path.Combine(AppContext.BaseDirectory, "Sources", "products.json"));
             db.Seedwork<Product>(Path.Combine(AppContext.BaseDirectory, "Sources", "orders.json"));
 
-            //AppContext.BaseDirectory es la carpeta donde se ejecuta la aplicación, y "Sources" es una carpeta
-            //dentro de esa ubicación que contiene los archivos JSON con los datos iniciales.
+            //AppContext.BaseDirectory es la carpeta donde se ejecuta la aplicaciï¿½n, y "Sources" es una carpeta
+            //dentro de esa ubicaciï¿½n que contiene los archivos JSON con los datos iniciales.
 
             //Path.Combine() construye la ruta a los archivos de datos dentro de la carpeta Sources.
            
