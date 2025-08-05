@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dsw2025Tpi.Application.Dtos
-
+﻿namespace Dsw2025Tpi.Application.Dtos
+// Definicion de los modelos de datos para productos
+// por cada peticion, obtiene una respuesta con los datos del producto
 {
     public record ProductModel
     {

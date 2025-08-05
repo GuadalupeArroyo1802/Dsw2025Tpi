@@ -1,24 +1,22 @@
 ﻿using Dsw2025Tpi.Application.Services;
 using Dsw2025Tpi.Application.Dtos;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Dsw2025Tpi.Api.Controllers;
-[ApiController]
+[ApiController] // activa las funcionalidades automaticas como validaciion del mapeo y mapeo de json
 [Route("api/auth")]
 public class AuthenticateController : ControllerBase
 {
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly JwtTokenService _jwtTokenService;
+    private readonly UserManager<IdentityUser> _userManager; //gestiona usuarios
+    private readonly SignInManager<IdentityUser> _signInManager; //gestiona logins y validacion de contraseñas
+    private readonly JwtTokenService _jwtTokenService; //servicio para generar tokens JWT
 
     public AuthenticateController(UserManager<IdentityUser> userManager,
         SignInManager<IdentityUser> signInManager,
         JwtTokenService jwtTokenService)
     {
-        _userManager = userManager;
+        _userManager = userManager;     //inyeccion de dependencias
         _signInManager = signInManager;
         _jwtTokenService = jwtTokenService;
     }
@@ -39,11 +37,17 @@ public class AuthenticateController : ControllerBase
         }
 
         var roles = await _userManager.GetRolesAsync(user);
-        var role = roles.FirstOrDefault() ?? "customer"; // Default si no tiene ninguno
+        if (roles == null || roles.Count == 0)
+        {
+            return Unauthorized("El usuario no tiene un rol asignado.");
+        }
+
+        var role = roles.First();
 
         var token = _jwtTokenService.GenerateToken(request.Username, role);
         return Ok(new { token });
     }
+
 
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
@@ -51,7 +55,7 @@ public class AuthenticateController : ControllerBase
         // Validación de formato de correo
         try
         {
-            var emailCheck = new System.Net.Mail.MailAddress(model.Email);
+            var emailCheck = new System.Net.Mail.MailAddress(model.Email); //si no cumple con el formato de @ el correo lanzará una excepción
         }
         catch (FormatException)
         {
@@ -66,7 +70,7 @@ public class AuthenticateController : ControllerBase
         }
 
         // Validación del rol
-        var role = string.IsNullOrWhiteSpace(model.Role) ? "customer" : model.Role.ToLower();
+        var role = string.IsNullOrWhiteSpace(model.Role) ? "customer" : model.Role.ToLower(); ///aquii  <----
         if (role != "admin" && role != "customer")
         {
             return BadRequest("Rol inválido. Solo se permiten 'admin' o 'customer'.");
