@@ -21,7 +21,7 @@ namespace Dsw2025Tpi.Api.Controllers
             _productsManagmentService = productsManagementService;
         }
 
-        //Agregar un producto #check
+        //Agregar un producto
         [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] ProductModel.ProductRequest request)
