@@ -1,11 +1,4 @@
-﻿using Dsw2025Tpi.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dsw2025Tpi.Domain.Entities;
+﻿namespace Dsw2025Tpi.Domain.Entities;
 
 public class Product : EntityBase
 {
@@ -32,9 +25,8 @@ public class Product : EntityBase
     public string? Name { get; set; }
     public decimal CurrentUnitPrice { get; set; }
     public bool IsActive { get; set; }
-
+    //Define un atributo de tipo Colección, con todas las OrderItems
     public ICollection<OrderItem> OrderItems { get; set; }
-
     public int RestarStock(int cantidad)
     {
         StockQuantity -= cantidad;

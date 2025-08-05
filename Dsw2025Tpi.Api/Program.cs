@@ -1,16 +1,13 @@
-using Dsw2025Tpi.Application.Services;
 using Dsw2025Tpi.Data;
 using Dsw2025Tpi.Data.Repositories;
 using Dsw2025Tpi.Domain.Entities;
 using Dsw2025Tpi.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 namespace Dsw2025Tpi.Api;
 using Dsw2025Tpi.Data.helpers;
 
 using System.Text;
 using Dsw2025Tpi.Application.Services;
-using Dsw2025Tpi.Data.helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;

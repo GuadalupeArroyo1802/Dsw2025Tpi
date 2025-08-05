@@ -1,9 +1,7 @@
 ﻿using Dsw2025Tpi.Application.Services;
 using Dsw2025Tpi.Application.Dtos;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Dsw2025Tpi.Api.Controllers;
 [ApiController]
@@ -29,18 +27,22 @@ public class AuthenticateController : ControllerBase
         var user = await _userManager.FindByNameAsync(request.Username);
         if (user == null)
         {
-            return Unauthorized("Usuario o contraseña incorrectos");
+            return Unauthorized("Usuario incorrecto o inexistente");
         }
 
         var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
         if (!result.Succeeded)
         {
-            return Unauthorized("Usuario o contraseña incorrectos");
+            return Unauthorized("Contraseña incorrecta");
         }
 
         var roles = await _userManager.GetRolesAsync(user);
-        var role = roles.FirstOrDefault() ?? "customer"; // Default si no tiene ninguno
+        if (roles == null || roles.Count == 0)
+        {
+            return Unauthorized("El usuario no tiene un rol asignado");
+        }
 
+        var role = roles.First();
         var token = _jwtTokenService.GenerateToken(request.Username, role);
         return Ok(new { token });
     }
@@ -83,5 +85,4 @@ public class AuthenticateController : ControllerBase
 
         return Ok("Usuario registrado correctamente.");
     }
-
 }
