@@ -1,29 +1,38 @@
-﻿using System.Text.Json;
-
+﻿using Dsw2025Tpi.Domain.Entities;
+using System.Text.Json;
 
 namespace Dsw2025Tpi.Data.helpers
 {
     public static class DbContextExtensions
     {
-        public static void Seedwork<T>(this Dsw2025TpiContext context, string dataSource) where T : class //puede trabaja con cualqui tipo de clase
+        public static void Seedwork<T>(this Dsw2025TpiContext context, string dataSource) where T : EntityBase
         {
-            if (context.Set<T>().Any()) return;
-            var json = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, dataSource));
+            if (context.Set<T>().Any()) return;//Evita duplicacion (si ya hay datos, salir)
+            var jsonPath = Path.Combine(AppContext.BaseDirectory, dataSource);
+            if (!File.Exists(jsonPath)) return;
+
+            var json = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, dataSource)); //Lee el json
             var entities = JsonSerializer.Deserialize<List<T>>(json, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true, // permite que los nombres de las propiedades no sean sensibles a mayúsculas y minúsculas
+            {//Deserializa el contenido del .json, ignorando mayus. y minus. en propiedades
+                PropertyNameCaseInsensitive = true,
             });
-            if (entities == null || entities.Count == 0) return; // Si no hay entidades deserializadas, no hace nada
-            context.Set<T>().AddRange(entities); //Agrega todos los objetos deserializados al contexto de EF Core
-            context.SaveChanges(); //Guarda los cambios en la base de datos
-        }
+            if (entities == null || entities.Count == 0) return; //Si no se deserializa, o lista vacía, salir
+                                                                 //context.Set<T>().AddRange(entities);
+            foreach (var entity in entities)
+            {
+                var entityId = ((EntityBase)entity).Id;
+
+                var alreadyTracked = context.Set<T>().Local
+                    .Cast<EntityBase>()
+                    .Any(e => e.Id == entityId);
+
+                if (!alreadyTracked)
+                {
+                    context.Set<T>().Add(entity);
+                }
+            }
+
+            context.SaveChanges(); //Guarda los cambios
+        }
     }
-
-    //Esta extension sirve para inicializar la base de datos con datos de ejemplo desde un archivo JSON.
-    //Es un metodo generico que lee los .json,  que recibe como parametro la instnacia del DbContext y data sources que es la 
-    //ruta del archivo JSON que contiene los datos a cargar.
-    //revisa si ya hay datos en la tabla correspondiente a T, y si ya hay no hace nada para evitar duplicados
-    //en el caso que no haya datos, lee el archivo .josn, desde el disrectorio de la app y el nombre del archivo
-    // deserializa el contenido del archivo a una lista de entidades del tipo T.
 }
-

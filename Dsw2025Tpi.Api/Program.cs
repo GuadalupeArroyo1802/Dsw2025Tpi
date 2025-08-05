@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Dsw2025Tpi.Application.Services;
+
 
 
 namespace Dsw2025Tpi.Api;
@@ -131,7 +133,7 @@ public class Program
             var db = scope.ServiceProvider.GetRequiredService<Dsw2025TpiContext>(); //establece una instancia del contexto de la base de datos
             db.Seedwork<Customer>(Path.Combine(AppContext.BaseDirectory, "Sources", "customers.json"));
             db.Seedwork<Product>(Path.Combine(AppContext.BaseDirectory, "Sources", "products.json"));
-            db.Seedwork<Product>(Path.Combine(AppContext.BaseDirectory, "Sources", "orders.json"));
+            db.Seedwork<Order>(Path.Combine(AppContext.BaseDirectory, "Sources", "orders.json"));
 
             //AppContext.BaseDirectory es la carpeta donde se ejecuta la aplicaci�n, y "Sources" es una carpeta
             //dentro de esa ubicaci�n que contiene los archivos JSON con los datos iniciales.
