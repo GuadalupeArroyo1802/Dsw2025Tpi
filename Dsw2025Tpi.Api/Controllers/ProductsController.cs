@@ -51,7 +51,7 @@ namespace Dsw2025Tpi.Api.Controllers
         }
 
         // Obtener todos los productos 
-        [AllowAnonymous]
+        [AllowAnonymous] //cualquier usuario puede acceder a este endpoint
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
