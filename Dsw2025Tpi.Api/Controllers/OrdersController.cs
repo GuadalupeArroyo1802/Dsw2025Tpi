@@ -1,12 +1,8 @@
 ﻿using Dsw2025Tpi.Application.Dtos;
 using Dsw2025Tpi.Application.Exceptions;
 using Dsw2025Tpi.Application.Services;
-using Dsw2025Tpi.Data.Repositories;
-using Dsw2025Tpi.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Dsw2025Tpi.Api.Controllers
 {
@@ -72,12 +68,12 @@ namespace Dsw2025Tpi.Api.Controllers
         public async Task<IActionResult> GetOrderById(Guid id)
         {
             try
-            {
-                var order = await _orderManagmentService.GetOrderById(id);
-                if (order == null) return NotFound();
+            { 
+                var order = await _orderManagmentService.GetOrderById(id); //busca el id
+                if (order == null) return NotFound();// si no se encunetra 
                 return Ok(order);
             }
-            catch (Exception ex)
+            catch (Exception ex) //cualquier otro error
             {
                 return StatusCode(500, $"Error al buscar la orden: {ex.Message}");
             }
@@ -88,17 +84,16 @@ namespace Dsw2025Tpi.Api.Controllers
         {
             try
             {
-                var result = await _orderManagmentService.UpdateOrderStatus(id, request.NewStatus);
-                if (result == null) return NotFound("Orden no encontrada");
+                var result = await _orderManagmentService.UpdateOrderStatus(id, request.NewStatus); // establece el nuevo estado de la orden
                 return Ok(result);
             }
             catch (ArgumentException ae)
             {
-                return BadRequest(ae.Message);
+                return BadRequest(ae.Message);  // si hay un error en el argumento 401
             }
             catch (Exception ex)
             {
-                return Problem(ex.Message);
+                return Problem(ex.Message); // si hay un error en el servidor 500
             }
         }
     }

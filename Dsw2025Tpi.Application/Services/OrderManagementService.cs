@@ -2,15 +2,8 @@
 using Dsw2025Tpi.Application.Exceptions;
 using Dsw2025Tpi.Domain.Entities;
 using Dsw2025Tpi.Domain.Interfaces;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Azure.Core.HttpHeader;
 using static Dsw2025Tpi.Application.Dtos.OrderModel;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 namespace Dsw2025Tpi.Application.Services
 {
@@ -46,7 +39,7 @@ namespace Dsw2025Tpi.Application.Services
             {
                 var product = await _repository.GetById<Product>(item.ProductId);
                 if (product.IsActive == false)
-                    throw new ArgumentException("producto no dispnible, campo IsActive false");
+                    throw new ArgumentException("producto no disponible, campo IsActive false");
                 if (product == null)
                     throw new EntityNotFoundException($"Producto con ID {item.ProductId} no encontrado.");
                 if (product.StockQuantity < item.Quantity)
@@ -58,8 +51,6 @@ namespace Dsw2025Tpi.Application.Services
                 }
 
             }
-
-
 
             var orderItems = new List<OrderItem>();
             //Crear los items de la orden
