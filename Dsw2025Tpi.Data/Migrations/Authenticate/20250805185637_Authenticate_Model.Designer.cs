@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dsw2025Tpi.Data.Migrations.Authenticate
 {
     [DbContext(typeof(AuthenticateContext))]
-    [Migration("20250804184155_Authenticate_Model")]
+    [Migration("20250805185637_Authenticate_Model")]
     partial class Authenticate_Model
     {
         /// <inheritdoc />

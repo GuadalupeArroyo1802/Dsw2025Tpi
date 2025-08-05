@@ -1,50 +1,56 @@
 [
   {
+    "id": "d147c075-b2e1-4faa-b856-4eb3ab024c99",
+    "customerId": "8ec9c66d-32d7-4854-8510-eeb5b546c2bc",
     "shippingAddress": "100 Main St, Springfield",
     "billingAddress": "100 Main St, Springfield",
-    "customerId": "b63d33e2-cae4-422a-9c81-c78cbf4ca84b",
-    "notes": "",
+    "createdAt": "2025-08-05T20:03:08.810212Z",
+    "status": 1,
     "orderItems": [
       {
-        "productId": "3572da38-61df-43fb-a72b-b296b892fca6",
-        "quantity": 3
-      },
-      {
-        "productId": "058f5e56-f012-4880-a7f8-2efd436ace33",
-        "quantity": 1
+        "id": "1b5d01fa-179e-4050-b287-16c9a58e3be7",
+        "productId": "6a82cde9-efa1-403c-ba20-19cf04070400",
+        "unitPrice":75,
+        "quantity": 2,
+        "subtotal": 150.0
       }
-    ]
+    ],
+    "totalAmount": 150.0
   },
   {
+    "id": "c55424dc-2007-43dd-a538-f01bad623c8e",
+    "customerId": "8ec9c66d-32d7-4854-8510-eeb5b546c2bc",
     "shippingAddress": "101 Main St, Springfield",
     "billingAddress": "101 Main St, Springfield",
-    "customerId": "b63d33e2-cae4-422a-9c81-c78cbf4ca84b",
-    "notes": "",
+    "createdAt": "2025-08-05T20:03:08.810282Z",
+    "status": 1,
     "orderItems": [
       {
-        "productId": "4950a4a5-0311-4fff-a4d8-b9a7767950a6",
-        "quantity": 3
-      },
-      {
-        "productId": "5e7d955b-d820-4cc9-9461-fc35cb24c4aa",
-        "quantity": 2
+        "id": "e3b0cb17-3b89-4f38-9e49-7781f5e34af1",
+        "productId": "2557c717-c9b5-4ad4-a809-1b1a15c99a8b",
+        "unitPrice": 59.99,
+        "quantity": 1,
+        "subtotal": 59.99
       }
-    ]
+    ],
+    "totalAmount": 59.99
   },
   {
+    "id": "8692e466-9a2a-4b49-b121-fcfcb2d854ca",
+    "customerId": "8ec9c66d-32d7-4854-8510-eeb5b546c2bc",
     "shippingAddress": "102 Main St, Springfield",
     "billingAddress": "102 Main St, Springfield",
-    "customerId": "b63d33e2-cae4-422a-9c81-c78cbf4ca84b",
-    "notes": "",
+    "createdAt": "2025-08-05T20:03:08.810405Z",
+    "status": 1,
     "orderItems": [
       {
-        "productId": "4950a4a5-0311-4fff-a4d8-b9a7767950a6",
-        "quantity": 1
-      },
-      {
-        "productId": "2af01f44-dc55-44ac-af45-98b41f1e42cd",
-        "quantity": 2
+        "id": "81fd6830-2733-4563-a6c1-dc9c1d3c8e15",
+        "productId": "d619acec-e7af-4452-82fe-256bc0c26705",
+        "unitPrice": 81.5,
+        "quantity": 3,
+        "subtotal": 244.5
       }
-    ]
+    ],
+    "totalAmount": 244.5
   }
 ]
