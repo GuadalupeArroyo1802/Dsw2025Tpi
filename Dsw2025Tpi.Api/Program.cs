@@ -19,9 +19,8 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args); //objeto que se encarga de configurar la aplicacion
+        var builder = WebApplication.CreateBuilder(args); 
 
-        // Add services to the container.
 
         builder.Services.AddControllers()
         .AddJsonOptions(options =>
@@ -29,15 +28,15 @@ public class Program
             options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
             options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
         });
-        // https://aka.ms/aspnetcore/swashbuckle guia a un recurso para saber como configurar Swagger/OpenAPI
+        // https://aka.ms/aspnetcore/swashbuckle 
       
         builder.Services.AddScoped<IProductsManagementService, ProductsManagementService>();
         builder.Services.AddScoped<IOrderManagement, OrderManagement>();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddTransient<IRepository, EfRepository>();
-        builder.Services.AddSwaggerGen(o => //Creacion de la documentacion de la API con Swagger
+        builder.Services.AddSwaggerGen(o => 
         {
-            o.SwaggerDoc("v1", new OpenApiInfo ///informacion de la API
+            o.SwaggerDoc("v1", new OpenApiInfo 
             {
                 Title = "Desarrollo De Software",
                 Version = "v1", 
@@ -45,7 +44,7 @@ public class Program
             o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme //definicion de esquema de seguridad
             {
                 In = ParameterLocation.Header, //define donde se espera el token
-                Name = "Authorization", //Define el nombre del header donde se env�a el token.
+                Name = "Authorization", //Define el nombre del header donde se envia el token.
                 Description = "Ingresar el token", //especifica donde va el token
                 Type = SecuritySchemeType.ApiKey, //Indica que Swagger usar� este esquema como si fuera una token Bearer.
             });
