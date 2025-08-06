@@ -8,7 +8,6 @@ namespace Dsw2025Tpi.Domain.Entities
             Email = email;
             Name = name;
             PhoneNumber = phoneNumber;
-            Id = Guid.NewGuid();
         }
         public string? Email { get; set; }
         public string? Name { get; set; }

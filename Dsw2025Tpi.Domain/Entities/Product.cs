@@ -14,7 +14,6 @@ public class Product : EntityBase
         Description = descripcion;
         CurrentUnitPrice = price;
         StockQuantity = stock;
-        Id = Guid.NewGuid();
         IsActive = true;
     }
 
