@@ -4,18 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dsw2025Tpi.Data
 {
-    public class AuthenticateContext : IdentityDbContext //creando automaticamente una base de datos con tablas 
+    public class AuthenticateContext : IdentityDbContext 
     {
         public AuthenticateContext(DbContextOptions<AuthenticateContext> options) : base(options)
         {
-            //se recibe las opciones de configuracion de la base de datos en el contructor
+           
         }
         protected override void OnModelCreating(ModelBuilder builder)
-        //este metodo se usa para configurar el modelo de datos y las tablas que se van a crear en la base de datos
-        {//se usa override para modificar el comportamiento del modelo de datos
-
-            base.OnModelCreating(builder); //llama al metodo original para no perder la configuracion por defecto
-            //se personalizan los nombres de las tablas de identidad
+        {
+            base.OnModelCreating(builder); 
             builder.Entity<IdentityUser>(b => { b.ToTable("Usuarios"); });
             builder.Entity<IdentityRole>(b => { b.ToTable("Roles"); });
             builder.Entity<IdentityUserRole<string>>(b => { b.ToTable("UsuariosRoles"); });

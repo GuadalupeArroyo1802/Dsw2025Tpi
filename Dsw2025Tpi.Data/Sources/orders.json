@@ -23,7 +23,7 @@
     "shippingAddress": "102 Main St, Springfield",
     "billingAddress": "102 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 2,
     "orderItems": [
       {
         "id": "81fd6830-2733-4563-a6c1-dc9c1d3c8e15",
@@ -61,7 +61,7 @@
     "shippingAddress": "104 Main St, Springfield",
     "billingAddress": "104 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 5,
     "orderItems": [
       {
         "id": "f444d99f-394f-4e65-8eab-1a1047c7d602",
@@ -80,7 +80,7 @@
     "shippingAddress": "105 Main St, Springfield",
     "billingAddress": "105 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 2,
     "orderItems": [
       {
         "id": "cdbdd60d-1758-44e4-801b-23b7390bf6de",
@@ -99,7 +99,7 @@
     "shippingAddress": "106 Main St, Springfield",
     "billingAddress": "106 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 4,
     "orderItems": [
       {
         "id": "96e8c42f-991b-4fd8-965a-df87b16bc702",
@@ -118,7 +118,7 @@
     "shippingAddress": "107 Main St, Springfield",
     "billingAddress": "107 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 2,
     "orderItems": [
       {
         "id": "9e063c55-82be-460e-a8c4-3b3acea07983",
@@ -194,7 +194,7 @@
     "shippingAddress": "111 Main St, Springfield",
     "billingAddress": "111 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 3,
     "orderItems": [
       {
         "id": "1f635fdc-c375-49fa-99bc-35ae09aaed2d",
@@ -213,7 +213,7 @@
     "shippingAddress": "113 Main St, Springfield",
     "billingAddress": "113 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 3,
     "orderItems": [
       {
         "id": "f9f0bb8d-aec8-419b-9d22-7d823bab13bd",
@@ -270,7 +270,7 @@
     "shippingAddress": "116 Main St, Springfield",
     "billingAddress": "116 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 4,
     "orderItems": [
       {
         "id": "a81e7e67-5c11-49fe-85fc-e6c6ec954fcd",
@@ -289,7 +289,7 @@
     "shippingAddress": "117 Main St, Springfield",
     "billingAddress": "117 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
-    "status": 1,
+    "status": 4,
     "orderItems": [
       {
         "id": "c4e0ff2f-c569-44ab-9975-0cd5fb3c6151",

@@ -10,7 +10,7 @@ namespace Dsw2025Tpi.Api.Controllers
     [Authorize]
 
     [Route("api/orders")]
-    public class OrdersController : ControllerBase
+    public class OrdersController : ControllerBase 
     {
         private IOrderManagement _orderManagmentService;
         public OrdersController(IOrderManagement orderManagement)
@@ -18,18 +18,18 @@ namespace Dsw2025Tpi.Api.Controllers
             _orderManagmentService = orderManagement;
         }
 
-        //Agregar una orden
+        [Authorize(Roles = "customer")]
         [HttpPost]
         public async Task<IActionResult> AddOrder([FromBody] OrderModel.OrderRequest request)
         {
             try
             {
                 var order = await _orderManagmentService.AddOrder(request);
-                return Created("api/orders", order);
+                return Created("api/orders", order); 
             }
             catch (ArgumentException ae)
             {
-                return BadRequest(ae.Message);
+                return BadRequest(ae.Message); 
             }
             catch (EntityNotFoundException enfe)
             {
@@ -41,16 +41,17 @@ namespace Dsw2025Tpi.Api.Controllers
             }
             catch (Exception e)
             {
-                return Problem(e.Message);
+                return Problem(e.Message); 
             }
         }
-        // Obtener todas las ordenenes
+
+        [Authorize(Roles = "customer")]
         [HttpGet]
         public async Task<IActionResult> GetOrders(
             [FromQuery] string? status,
             [FromQuery] Guid? customerId,
-            [FromQuery] int pageNumber = 1, //consulta paginada con el resultado excede determinado numero de registros
-            [FromQuery] int pageSize = 10) //queda planteado los argumentos, no se los utiliza 
+            [FromQuery] int pageNumber = 1, 
+            [FromQuery] int pageSize = 10) 
         {
             try
             {
@@ -63,37 +64,39 @@ namespace Dsw2025Tpi.Api.Controllers
             }
         }
 
-        // Obtener orden por ID
+        [Authorize(Roles = "customer")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderById(Guid id)
         {
             try
             { 
-                var order = await _orderManagmentService.GetOrderById(id); //busca el id
-                if (order == null) return NotFound();// si no se encunetra 
+                var order = await _orderManagmentService.GetOrderById(id); 
+                if (order == null) return NotFound();
                 return Ok(order);
             }
-            catch (Exception ex) //cualquier otro error
+            catch (Exception ex) 
             {
                 return StatusCode(500, $"Error al buscar la orden: {ex.Message}");
             }
         }
-        // Actualizar estado de una orden
+
+
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}/status")]
         public async Task<IActionResult> UpdateOrderStatus(Guid id, [FromBody] OrderModel.UpdateOrderStatusRequest request)
         {
             try
             {
-                var result = await _orderManagmentService.UpdateOrderStatus(id, request.NewStatus); // establece el nuevo estado de la orden
+                var result = await _orderManagmentService.UpdateOrderStatus(id, request.NewStatus);
                 return Ok(result);
             }
             catch (ArgumentException ae)
             {
-                return BadRequest(ae.Message);  // si hay un error en el argumento 401
+                return BadRequest(ae.Message);  
             }
             catch (Exception ex)
             {
-                return Problem(ex.Message); // si hay un error en el servidor 500
+                return Problem(ex.Message); 
             }
         }
     }

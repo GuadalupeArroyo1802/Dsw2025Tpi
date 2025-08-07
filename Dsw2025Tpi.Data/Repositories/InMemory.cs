@@ -12,21 +12,21 @@ namespace Dsw2025Tpi.Data.Repositories
 
         public InMemoryRepository()
         {
-            LoadProducts(); //cargar productos desde el archivo JSON
-            LoadCustomers(); //cargar clientes desde el archivo JSON
+            LoadProducts(); 
+            LoadCustomers(); 
         }
 
         private void LoadProducts()
         {
             var jsonPath = Path.Combine(AppContext.BaseDirectory, "Sources", "products.json");
-            if (File.Exists(jsonPath)) //verifica si el archivo existe
+            if (File.Exists(jsonPath)) 
             {
-                var json = File.ReadAllText(jsonPath); //lee todo el contenido del archivo JSON
-                var list = JsonSerializer.Deserialize<List<Product>>(json, new JsonSerializerOptions //deserializa el contenido JSON a una lista de productos
+                var json = File.ReadAllText(jsonPath); 
+                var list = JsonSerializer.Deserialize<List<Product>>(json, new JsonSerializerOptions 
                 {
-                    PropertyNameCaseInsensitive = true //ignora mayusculas y minusculas en los nombres de las propiedades
+                    PropertyNameCaseInsensitive = true 
                 });
-                if (list != null) _products.AddRange(list); //si la lista no es nula, agrega los productos a la lista interna
+                if (list != null) _products.AddRange(list); 
             }
         }
 
@@ -44,43 +44,43 @@ namespace Dsw2025Tpi.Data.Repositories
             }
         }
 
-        private List<T>? GetList<T>() where T : EntityBase //obtener la lista correspondiente segun el tipo de entidad
+        private List<T>? GetList<T>() where T : EntityBase 
         {
-            return typeof(T).Name switch //operador switch basado en el nombre del tipo T
+            return typeof(T).Name switch 
             {
-                nameof(Product) => _products as List<T>, //si T es Product, retorna la lista de productos
-                nameof(Customer) => _customers as List<T>, //si T es Customer, retorna la lista de clientes
-                _ => throw new NotSupportedException() //si T no es ninguno de los anteriores, lanza una excepcion indicando que el tipo no es soportado
+                nameof(Product) => _products as List<T>, 
+                nameof(Customer) => _customers as List<T>, 
+                _=> throw new NotSupportedException() 
             };
         }
 
-        public Task<T?> GetById<T>(Guid id, params string[] include) where T : EntityBase // obtener una entidad por su Id
+        public Task<T?> GetById<T>(Guid id, params string[] include) where T : EntityBase 
         {
-            return Task.FromResult(GetList<T>()?.FirstOrDefault(e => e.Id == id)); //busca en la lista correspondiente la entidad con el Id especificado y la retorna
+            return Task.FromResult(GetList<T>()?.FirstOrDefault(e => e.Id == id)); 
         }
 
-        public Task<IEnumerable<T>?> GetAll<T>(params string[] include) where T : EntityBase // obtener todas las entidades de un tipo T
+        public Task<IEnumerable<T>?> GetAll<T>(params string[] include) where T : EntityBase 
         {
-            return Task.FromResult(GetList<T>()?.AsEnumerable()); //retorna la lista correspondiente convertida a IEnumerable, que se puede recorrer
+            return Task.FromResult(GetList<T>()?.AsEnumerable()); 
         }
 
-        public Task<T?> First<T>(Expression<Func<T, bool>> predicate, params string[] include) where T : EntityBase // obtener la primera entidad que cumpla con una condicion
+        public Task<T?> First<T>(Expression<Func<T, bool>> predicate, params string[] include) where T : EntityBase 
         {
-            return Task.FromResult(GetList<T>()?.FirstOrDefault(predicate.Compile())); //busca en la lista correspondiente la primera entidad que cumpla con el predicado y la retorna
+            return Task.FromResult(GetList<T>()?.FirstOrDefault(predicate.Compile())); 
         }
 
-        public Task<IEnumerable<T>?> GetFiltered<T>(Expression<Func<T, bool>> predicate, params string[] include) where T : EntityBase // obtener una lista de entidades filtradas por una condicion
+        public Task<IEnumerable<T>?> GetFiltered<T>(Expression<Func<T, bool>> predicate, params string[] include) where T : EntityBase 
         {
-            return Task.FromResult(GetList<T>()?.Where(predicate.Compile())); //filtra la lista correspondiente usando el predicado y retorna las entidades que cumplan con la condicion
+            return Task.FromResult(GetList<T>()?.Where(predicate.Compile())); 
         }
 
-        public Task<T> Add<T>(T entity) where T : EntityBase // agregar una nueva entidad a la lista correspondiente
+        public Task<T> Add<T>(T entity) where T : EntityBase 
         {
-            GetList<T>()?.Add(entity); //agrega la entidad a la lista correspondiente
-            return Task.FromResult(entity); //retorna la entidad agregada
+            GetList<T>()?.Add(entity); 
+            return Task.FromResult(entity); 
         }
 
-        public Task<T> Update<T>(T entity) where T : EntityBase // actualizar una entidad existente en la lista correspondiente
+        public Task<T> Update<T>(T entity) where T : EntityBase 
         {
             var list = GetList<T>(); // obtiene la lista correspondiente
             var existing = list?.FirstOrDefault(e => e.Id == entity.Id); //busca la entidad existente en la lista por su Id
@@ -89,10 +89,10 @@ namespace Dsw2025Tpi.Data.Repositories
                 list!.Remove(existing); //si la entidad existe, la elimina de la lista
                 list.Add(entity); //y luego agrega la entidad actualizada
             }
-            return Task.FromResult(entity); //retorna la entidad actualizada
+            return Task.FromResult(entity); //retorna la entidad modificicada
         }
 
-        public Task<T> Delete<T>(T entity) where T : EntityBase // eliminar una entidad de la lista correspondiente
+        public Task<T> Delete<T>(T entity) where T : EntityBase 
         {
             GetList<T>()?.Remove(entity); // elimina la entidad de la lista correspondiente
             return Task.FromResult(entity); //retorna la entidad eliminada

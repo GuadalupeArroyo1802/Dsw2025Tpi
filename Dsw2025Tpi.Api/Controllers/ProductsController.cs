@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dsw2025Tpi.Api.Controllers
 {
-    [ApiController] // activa 
+    [ApiController] 
     [Authorize]
     [Route("api/products")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : ControllerBase 
     {
 
         private IProductsManagementService _productsManagmentService;
@@ -20,7 +20,7 @@ namespace Dsw2025Tpi.Api.Controllers
             _productsManagmentService = productsManagementService;
         }
 
-        //Agregar un producto 
+  
         [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] ProductModel.ProductRequest request)
@@ -28,9 +28,7 @@ namespace Dsw2025Tpi.Api.Controllers
             try
             {
                 var product = await _productsManagmentService.AddProduct(request);
-                return Created("api/products", product
-
-        );
+                return Created("api/products", product);
             }
             catch (ArgumentException ae)
             {
@@ -50,19 +48,19 @@ namespace Dsw2025Tpi.Api.Controllers
             }
         }
 
-        // Obtener todos los productos 
-        [AllowAnonymous] //cualquier usuario puede acceder a este endpoint
+
+        [AllowAnonymous] 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             try
             {
                 var products = await _productsManagmentService.GetProducts();
-                return Ok(products); // 200
+                return Ok(products); 
             }
             catch (EntityNotFoundException enft)
             {
-                return NoContent(); // 204
+                return NoContent(); 
             }
             catch (Exception e)
             {
@@ -71,19 +69,19 @@ namespace Dsw2025Tpi.Api.Controllers
 
         }
 
-        // Obtener un producto por ID 
-        [Authorize]
+
+        [AllowAnonymous]
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             try
             {
                 var product = await _productsManagmentService.GetProductById(id);
-                return Ok(product); // 200
+                return Ok(product); 
             }
             catch (EntityNotFoundException enft)
             {
-                return NotFound(enft.Message); // 404
+                return NotFound(enft.Message); 
             }
             catch (Exception e)
             {
@@ -92,8 +90,7 @@ namespace Dsw2025Tpi.Api.Controllers
 
 
         }
-
-        // Actualizar un producto por ID 
+ 
         [Authorize(Roles = "admin")]
         [HttpPut("{id:Guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] ProductModel.ProductRequest request)
@@ -105,11 +102,11 @@ namespace Dsw2025Tpi.Api.Controllers
             }
             catch (EntityNotFoundException enft)
             {
-                return NotFound(enft.Message);
+                return NotFound(enft.Message); 
             }
             catch (ArgumentException ae)
             {
-                return BadRequest(ae.Message);
+                return BadRequest(ae.Message); 
             }
             catch (Exception e)
             {
@@ -117,7 +114,7 @@ namespace Dsw2025Tpi.Api.Controllers
             }
         }
 
-        //deshabilitar un producto 
+
         [Authorize(Roles = "admin")]
         [HttpPatch("{id:Guid}")]
         public async Task<IActionResult> Disable(Guid id)
