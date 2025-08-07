@@ -66,7 +66,6 @@ public class Dsw2025TpiContext : DbContext
             .IsRequired();
         dbOrderItem.Ignore(oi => oi.Subtotal);
 
-
     }
     public DbSet<Product> Products { get; set; }
     public DbSet<Customer> Customers { get; set; }

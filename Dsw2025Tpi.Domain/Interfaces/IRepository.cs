@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 
 namespace Dsw2025Tpi.Domain.Interfaces;
-//Interfaz genérica para un repositorio de entidades
+
 public interface IRepository
 {
     Task<T?> GetById<T>(Guid id, params string[] include) where T : EntityBase;

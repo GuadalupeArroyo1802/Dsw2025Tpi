@@ -16,8 +16,7 @@ public class ProductsManagementService : IProductsManagementService
         _repository = repository; // inyeccion de dependencia del repositorio, para poder utilizar los metodos que implementa
     }
 
-    //obtener un producto por ID
-    //Metodo que obtiene un producto por su ID y devuelve un DTO con los detalles del producto
+
     public async Task<ProductModel.ProductResponseUpdate>? GetProductById(Guid id) 
     {
         var product = await _repository.GetById<Product>(id); //llama al metodo GetById del repositorio para obtener el producto
@@ -35,13 +34,10 @@ public class ProductsManagementService : IProductsManagementService
         );
     }
 
-    //obtener todos los productos
-    //Devuelve una lista de productos activos, convertidos a DTOs.
     public async Task<List<ProductModel.ProductResponseUpdate>?> GetProducts()
     {
-        var products = await _repository.GetAll<Product>(); //llama al metodo GetAll del repositorio para obtener todos los productos
-
-        if (products == null || !products.Any() || products.Where(p => p.IsActive) == null) // verifica si la lista de productos es nula o vacía
+        var products = await _repository.GetAll<Product>(); 
+        if (products == null || !products.Any() || products.Where(p => p.IsActive) == null) 
         {
             throw new EntityNotFoundException("No se encontraron productos activos.");
         }
@@ -59,8 +55,6 @@ public class ProductsManagementService : IProductsManagementService
     }
 
 
-    // Agregar un nuevo producto
-    //Crea un nuevo producto a partir de un DTO ProductRequest. 
     public async Task<ProductModel.ProductResponse> AddProduct(ProductModel.ProductRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Sku) || //validad que los campos no esten vacios
@@ -83,20 +77,18 @@ public class ProductsManagementService : IProductsManagementService
     }   //Devuelve el producto creado como DTO de respuesta.
 
    
-    // Deshabilitar un producto por ID
-    public async Task<bool> DisableProductAsync(Guid id) //recibe como parametro el ID del producto a deshabilitar
+    public async Task<bool> DisableProductAsync(Guid id) 
     {
-        var product = await _repository.GetById<Product>(id); // obtiene el producto por su ID usando el repositorio
+        var product = await _repository.GetById<Product>(id);
         if (product is null || !product.IsActive)
             throw new EntityNotFoundException("Producto no encontrado o ya deshabilitado.");
 
         product.IsActive = false;
         await _repository.Update(product);
-        return true; // devuelve true si el producto fue deshabilitado correctamente
+        return true; 
     }
 
-    // Actualizar un producto por ID
-    // request Es un parámetro de tipo objeto que el método recibe, y que contiene los datos necesarios para crear o actualizar un producto.
+
     public async Task<ProductModel.ProductResponseUpdate> UpdateAsync(ProductModel.ProductRequest request, Guid id)
     {
         var product = await _repository.GetById<Product>(id);
@@ -109,7 +101,6 @@ public class ProductsManagementService : IProductsManagementService
                 request.CurrentUnitPrice <= 0)
             throw new ArgumentException("Valores para el producto no validos");
 
-        // Actualiza los campos de la entidad
         product.Sku = request.Sku;
         product.InternalCode = request.InternalCode;
         product.Name = request.Name;
@@ -117,10 +108,9 @@ public class ProductsManagementService : IProductsManagementService
         product.CurrentUnitPrice = request.CurrentUnitPrice;
         product.StockQuantity = request.StockQuantity;
 
-        // Guarda los cambios
+
         await _repository.Update(product);
 
-        // Mapea a DTO de respuesta
         return new ProductModel.ProductResponseUpdate(
             product.Id,
             product.Sku,

@@ -29,7 +29,7 @@ namespace Dsw2025Tpi.Application.Services
             if (request == null || request.OrderItems == null || !request.OrderItems.Any())
                 throw new ArgumentException("La orden debe tener al menos un producto.");
 
-            // Validar existencia del cliente
+
             var customer = await _repository.GetById<Customer>(request.CustomerId);
             if (customer == null)
                 throw new EntityNotFoundException($"Cliente no encontrado.");
@@ -37,6 +37,9 @@ namespace Dsw2025Tpi.Application.Services
             // validaciones
             foreach (var item in request.OrderItems)
             {
+                if (item.Quantity <= 0) 
+                    throw new ArgumentException($"La cantidad del producto con ID {item.ProductId} debe ser mayor a cero.");
+
                 var product = await _repository.GetById<Product>(item.ProductId);
                 if (product.IsActive == false)
                     throw new ArgumentException("producto no disponible, campo IsActive false");
@@ -89,13 +92,13 @@ namespace Dsw2025Tpi.Application.Services
             var allOrders = await _repository.GetAll<Order>(nameof(Order.OrderItems), $"{nameof(Order.OrderItems)}.{nameof(OrderItem.Product)}");
             if (allOrders == null) return Enumerable.Empty<OrderResponse>();
 
-            var query = allOrders.AsQueryable();
+            var query = allOrders.AsQueryable(); //convierte a IQueryable para aplicar filtros
 
             if (!string.IsNullOrWhiteSpace(status))
-                query = query.Where(o => o.Status.ToString().Equals(status, StringComparison.OrdinalIgnoreCase));
+                query = query.Where(o => o.Status.ToString().Equals(status, StringComparison.OrdinalIgnoreCase)); 
 
             if (customerId.HasValue)
-                query = query.Where(o => o.CustomerId == customerId.Value);
+                query = query.Where(o => o.CustomerId == customerId.Value); // Filtrar por CustomerId si se proporciona
 
             var pagedOrders = query
                 .Skip((pageNumber - 1) * pageSize)
@@ -153,8 +156,6 @@ namespace Dsw2025Tpi.Application.Services
 
             if (!Enum.TryParse<OrderStatus>(newStatus, ignoreCase: true, out var parsedStatus))
                 throw new ArgumentException("Estado inválido.");
-
-            // Regla opcional: no permitir cambiar de Delivered o Cancelled a otros
             if (order.Status == OrderStatus.Delivered || order.Status == OrderStatus.Cancelled)
                 throw new ArgumentException("No se puede modificar una orden entregada o cancelada.");
 

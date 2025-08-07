@@ -7,17 +7,17 @@ namespace Dsw2025Tpi.Data.helpers
     {
         public static void Seedwork<T>(this Dsw2025TpiContext context, string dataSource) where T : EntityBase
         {
-            if (context.Set<T>().Any()) return;//Evita duplicacion (si ya hay datos, salir)
+            if (context.Set<T>().Any()) return;
             var jsonPath = Path.Combine(AppContext.BaseDirectory, dataSource);
             if (!File.Exists(jsonPath)) return;
 
-            var json = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, dataSource)); //Lee el json
+            var json = File.ReadAllText(Path.Combine(AppContext.BaseDirectory, dataSource));
             var entities = JsonSerializer.Deserialize<List<T>>(json, new JsonSerializerOptions
-            {//Deserializa el contenido del .json, ignorando mayus. y minus. en propiedades
+            {
                 PropertyNameCaseInsensitive = true,
             });
-            if (entities == null || entities.Count == 0) return; //Si no se deserializa, o lista vacía, salir
-                                                                 //context.Set<T>().AddRange(entities);
+            if (entities == null || entities.Count == 0) return;
+
             foreach (var entity in entities)
             {
                 var entityId = ((EntityBase)entity).Id;
@@ -32,7 +32,7 @@ namespace Dsw2025Tpi.Data.helpers
                 }
             }
 
-            context.SaveChanges(); //Guarda los cambios
-        }
+            context.SaveChanges();
+        }
     }
 }
