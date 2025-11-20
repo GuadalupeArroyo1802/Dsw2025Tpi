@@ -146,6 +146,5 @@ namespace Dsw2025Tpi.Api.Controllers
             }
             return Ok(products);
         }
-
     }
 }
