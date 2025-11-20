@@ -45,7 +45,7 @@ namespace Dsw2025Tpi.Api.Controllers
             }
         }
 
-        [Authorize(Roles = "customer")]
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetOrders(
             [FromQuery] string? status,
@@ -64,7 +64,7 @@ namespace Dsw2025Tpi.Api.Controllers
             }
         }
 
-        [Authorize(Roles = "customer")]
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderById(Guid id)
         {
