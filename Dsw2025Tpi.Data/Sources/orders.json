@@ -2,6 +2,8 @@
   {
     "id": "d147c075-b2e1-4faa-b856-4eb3ab024c99",
     "customerId": "8ec9c66d-32d7-4854-8510-eeb5b546c2bc",
+    "customerName": "Jane Doe",
+    "email": "jane.doe@example.com",
     "shippingAddress": "100 Main St, Springfield",
     "billingAddress": "100 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810212Z",
@@ -20,6 +22,8 @@
   {
     "id": "8692e466-9a2a-4b49-b121-fcfcb2d854ca",
     "customerId": "8ec9c66d-32d7-4854-8510-eeb5b546c2bc",
+    "customerName": "Jane Doe",
+    "email": "jane.doe@example.com",
     "shippingAddress": "102 Main St, Springfield",
     "billingAddress": "102 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -39,6 +43,8 @@
   {
     "id": "23d3de81-3896-4d18-bdc7-fa7e5200f9dc",
     "customerId": "8ec9c66d-32d7-4854-8510-eeb5b546c2bc",
+    "customerName": "Jane Doe",
+    "email": "jane.doe@example.com",
     "shippingAddress": "103 Main St, Springfield",
     "billingAddress": "103 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -58,6 +64,8 @@
   {
     "id": "afdf119d-53f7-41c1-b42f-b91aa68cdba7",
     "customerId": "0ce758ee-26c8-4ab4-9af3-dfa939931310",
+    "customerName": "Alice Martin",
+    "email": "alice.martin@example.com",
     "shippingAddress": "104 Main St, Springfield",
     "billingAddress": "104 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -77,6 +85,8 @@
   {
     "id": "cdde2446-d151-4f1e-a7ec-3b1b8dd21493",
     "customerId": "0ce758ee-26c8-4ab4-9af3-dfa939931310",
+    "customerName": "Alice Martin",
+    "email": "alice.martin@example.com",
     "shippingAddress": "105 Main St, Springfield",
     "billingAddress": "105 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -96,6 +106,8 @@
   {
     "id": "328b04b8-2eda-4ac5-bfe9-d99afde9abe5",
     "customerId": "0ce758ee-26c8-4ab4-9af3-dfa939931310",
+    "customerName": "Alice Martin",
+    "email": "alice.martin@example.com",
     "shippingAddress": "106 Main St, Springfield",
     "billingAddress": "106 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -115,6 +127,8 @@
   {
     "id": "adac4863-54c6-4122-b285-4ad0072372f8",
     "customerId": "2bf2e0a0-e666-4842-b78f-e8e308fcc8ae",
+    "customerName": "John Smith",
+    "email": "john.smith@example.com",
     "shippingAddress": "107 Main St, Springfield",
     "billingAddress": "107 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -134,6 +148,8 @@
   {
     "id": "61f481aa-2e39-46d4-a9f8-d4f3afd606fd",
     "customerId": "2bf2e0a0-e666-4842-b78f-e8e308fcc8ae",
+    "customerName": "John Smith",
+    "email": "john.smith@example.com",
     "shippingAddress": "108 Main St, Springfield",
     "billingAddress": "108 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -153,6 +169,8 @@
   {
     "id": "85cc96d1-0244-4f01-932e-41703592c892",
     "customerId": "2bf2e0a0-e666-4842-b78f-e8e308fcc8ae",
+    "customerName": "John Smith",
+    "email": "john.smith@example.com",
     "shippingAddress": "109 Main St, Springfield",
     "billingAddress": "109 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -172,6 +190,8 @@
   {
     "id": "0c05e3a2-8ed6-483d-be86-2e091c7c4e28",
     "customerId": "2bf2e0a0-e666-4842-b78f-e8e308fcc8ae",
+    "customerName": "John Smith",
+    "email": "john.smith@example.com",
     "shippingAddress": "110 Main St, Springfield",
     "billingAddress": "110 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -191,6 +211,8 @@
   {
     "id": "510dc7e1-eb5d-4341-ab62-7c8a40e4445c",
     "customerId": "2bf2e0a0-e666-4842-b78f-e8e308fcc8ae",
+    "customerName": "John Smith",
+    "email": "john.smith@example.com",
     "shippingAddress": "111 Main St, Springfield",
     "billingAddress": "111 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -210,6 +232,8 @@
   {
     "id": "a94f91f8-3338-4710-b36a-467e332c83ba",
     "customerId": "b7a62464-0a02-46b8-b1c6-cc064d37a8d3",
+    "customerName": "Bob Garcia",
+    "email": "bob.garcia@example.com",
     "shippingAddress": "113 Main St, Springfield",
     "billingAddress": "113 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -229,6 +253,8 @@
   {
     "id": "3abc061d-5b17-4b95-a4b7-c80128b8e1e7",
     "customerId": "b7a62464-0a02-46b8-b1c6-cc064d37a8d3",
+    "customerName": "Bob Garcia",
+    "email": "bob.garcia@example.com",
     "shippingAddress": "114 Main St, Springfield",
     "billingAddress": "114 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -248,6 +274,8 @@
   {
     "id": "25a8ce3b-a724-4f47-b4bc-536ae253a07b",
     "customerId": "b7a62464-0a02-46b8-b1c6-cc064d37a8d3",
+    "customerName": "Bob Garcia",
+    "email": "bob.garcia@example.com",
     "shippingAddress": "115 Main St, Springfield",
     "billingAddress": "115 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -267,6 +295,8 @@
   {
     "id": "8212e466-9a2a-4b49-b121-fcfcb2d854ca",
     "customerId": "b7a62464-0a02-46b8-b1c6-cc064d37a8d3",
+    "customerName": "Bob Garcia",
+    "email": "bob.garcia@example.com",
     "shippingAddress": "116 Main St, Springfield",
     "billingAddress": "116 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -286,6 +316,8 @@
   {
     "id": "1f54040d-1af2-490c-821c-08a02debf7ec",
     "customerId": "b7a62464-0a02-46b8-b1c6-cc064d37a8d3",
+    "customerName": "Bob Garcia",
+    "email": "bob.garcia@example.com",
     "shippingAddress": "117 Main St, Springfield",
     "billingAddress": "117 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -305,6 +337,8 @@
   {
     "id": "cb1a9476-87c4-43f6-b413-83920f248585",
     "customerId": "b7a62464-0a02-46b8-b1c6-cc064d37a8d3",
+    "customerName": "Bob Garcia",
+    "email": "bob.garcia@example.com",
     "shippingAddress": "118 Main St, Springfield",
     "billingAddress": "118 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
@@ -323,6 +357,8 @@
   {
     "id": "d18795a3-bb22-49a7-bc67-e531de170944",
     "customerId": "b7a62464-0a02-46b8-b1c6-cc064d37a8d3",
+    "customerName": "Bob Garcia",
+    "email": "bob.garcia@example.com",
     "shippingAddress": "119 Main St, Springfield",
     "billingAddress": "119 Main St, Springfield",
     "createdAt": "2025-08-05T20:03:08.810405Z",
